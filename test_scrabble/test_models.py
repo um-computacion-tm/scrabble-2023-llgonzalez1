@@ -8,7 +8,7 @@ from unittest.mock import patch
 
 class TestTiles(unittest.TestCase):
     def test_tile(self):
-        tiles = Tile('A', 1)
+        tiles = Tile('A', 1) 
         self.assertEqual(tiles.letter, 'A')
         self.assertEqual(tiles.value, 1)
 
