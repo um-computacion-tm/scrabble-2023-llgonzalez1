@@ -2,10 +2,9 @@ import unittest
 from scrabble.cell import Cell
 from scrabble.models import Tile
 
-
 class TestCell(unittest.TestCase):
     def test_init(self):
-        cell = Cell(multiplier=2, multiplier_type='letter')
+        cell = Cell(multiplier=2, multiplier_type='L', letter=None, active=True)
 
         self.assertEqual(
             cell.multiplier,
@@ -13,7 +12,7 @@ class TestCell(unittest.TestCase):
         )
         self.assertEqual(
             cell.multiplier_type,
-            'letter',
+            'L',
         )
         self.assertIsNone(cell.letter)
         self.assertEqual(
@@ -22,7 +21,7 @@ class TestCell(unittest.TestCase):
         )
 
     def test_add_letter(self):
-        cell = Cell(multiplier=1, multiplier_type='')
+        cell = Cell(multiplier=1, multiplier_type='', letter=None, active=True)
         letter = Tile(letter='p', value=3)
 
         cell.add_letter(letter=letter)
@@ -30,7 +29,7 @@ class TestCell(unittest.TestCase):
         self.assertEqual(cell.letter, letter)
 
     def test_cell_value(self):
-        cell = Cell(multiplier=2, multiplier_type='letter')
+        cell = Cell(multiplier=2, multiplier_type='L', letter=None, active=True)
         letter = Tile(letter='p', value=3)
         cell.add_letter(letter=letter)
 
@@ -40,7 +39,7 @@ class TestCell(unittest.TestCase):
         )
 
     def test_cell_multiplier_word(self):
-        cell = Cell(multiplier=2, multiplier_type='word')
+        cell = Cell(multiplier=2, multiplier_type='W', letter=None, active=True)
         letter = Tile(letter='p', value=3)
         cell.add_letter(letter=letter)
 
@@ -48,8 +47,6 @@ class TestCell(unittest.TestCase):
             cell.calculate_value(),
             3,
         )
-
-
-
 if __name__ == '__main__':
     unittest.main()
+    
