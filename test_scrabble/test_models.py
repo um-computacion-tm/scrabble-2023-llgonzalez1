@@ -1,6 +1,6 @@
 import unittest
 from scrabble.models import (
-    BagTiles,
+    Tilebag,
     Tile,
 )
 from unittest.mock import patch
@@ -16,7 +16,7 @@ class TestTiles(unittest.TestCase):
 class TestBagTiles(unittest.TestCase):
     @patch('random.shuffle')
     def test_bag_tiles(self, patch_shuffle):
-        bag = BagTiles()
+        bag = Tilebag()
         self.assertEqual(
             len(bag.tiles),
             86,
@@ -32,7 +32,7 @@ class TestBagTiles(unittest.TestCase):
 
 
     def test_take(self):
-        bag = BagTiles()
+        bag = Tilebag()
         tiles = bag.take(2)
         self.assertEqual(
             len(bag.tiles),
@@ -44,7 +44,7 @@ class TestBagTiles(unittest.TestCase):
         )
 
     def test_put(self):
-        bag = BagTiles()
+        bag = Tilebag()
         put_tiles = [Tile('Z', 1), Tile('Y', 1)]
         bag.put(put_tiles)
         self.assertEqual(

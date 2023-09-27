@@ -14,47 +14,46 @@ class Tile:
         return self.value
     def get_letter(self):
         return self.letter
+
+
+LETTERS = {'A': [1, 12],
+           'E': [1, 12],
+           'O': [1, 9],
+           'I': [1, 6],
+           'S': [1, 6],
+           'N': [1, 5],
+           'L': [1, 4],
+           'R': [1, 5],
+           'U': [1, 5],
+           'T': [1, 12],
+           'D': [2, 5],
+           'G': [2, 2],
+           'C': [3, 4],
+           'B': [3, 2],
+           'M': [3, 2],
+           'P': [3, 2],
+           'H': [4, 2],
+           'F': [4, 1],
+           'V': [4, 1],
+           'Y': [4, 1],
+           'CH': [5, 1],
+           'Q': [5, 1],
+           'J': [6, 1],
+           'LL': [6, 1],
+           'Ñ': [6, 1],
+           'RR': [6, 1],
+           'X': [6, 1],
+           'Z': [7, 1]}
+
 class DrawingMoreThanAvaliable(Exception):
     pass        
-class BagTiles:
-    def __init__(self):
-        self.letter = []
-        self.letter.extend([Tile('E', 1) for _ in range(12)]),
-        self.letter.extend([Tile('I', 1) for _ in range(6)]),
-        self.letter.extend([Tile('L', 1) for _ in range(4)]),
-        self.letter.extend([Tile('N', 1) for _ in range(5)]),
-        self.letter.extend([Tile('O', 1) for _ in range(9)]),
-        self.letter.extend([Tile('R', 1) for _ in range(5)]),
-        self.letter.extend([Tile('S', 1) for _ in range(6)]),
-        self.letter.extend([Tile('T', 1) for _ in range(4)]),
-        self.letter.extend([Tile('U', 1) for _ in range(5)]),
-        self.letter.extend([Tile('N', 2) for _ in range(5)]),
-        self.letter.extend([Tile('O', 2) for _ in range(2)]),
-        self.letter.extend([Tile('B', 3) for _ in range(2)]),
-        self.letter.extend([Tile('C', 3) for _ in range(4)]),
-        self.letter.extend([Tile('M', 3) for _ in range(2)]),
-        self.letter.extend([Tile('P', 3) for _ in range(2)]),
-        self.letter.extend([Tile('F', 4) for _ in range(1)]),
-        self.letter.extend([Tile('H', 4) for _ in range(2)]),
-        self.letter.extend([Tile('V', 4) for _ in range(1)]),
-        self.letter.extend([Tile('Y', 4) for _ in range(1)]),
-        self.letter.extend([Tile('CH', 5) for _ in range(1)]),
-        self.letter.extend([Tile('Q', 5) for _ in range(1)]),
-        self.letter.extend([Tile('J', 8) for _ in range(1)]),
-        self.letter.extend([Tile('LL', 8) for _ in range(1)]),
-        self.letter.extend([Tile('Ñ', 8) for _ in range(1)]),
-        self.letter.extend([Tile('RR', 8) for _ in range(1)]),
-        self.letter.extend([Tile('X', 8) for _ in range(1)]),
-        self.letter.extend([Tile('Z', 10) for _ in range(1)])
-
-        random.shuffle(self.tiles)
-    
-
+   
+class Tilebag:
     def __init__(self):
         self.tiles = []
         for letter in letter:
-            tile = Tile(letter, letter[letter][0])
-            for _ in range(letter[letter][1]):
+            tile = Tile(letter, letter[0])
+            for _ in range(letter[1]):
                 self.tiles.append(tile)
         random.shuffle(self.tiles)
 
