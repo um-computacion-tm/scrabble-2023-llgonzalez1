@@ -1,4 +1,4 @@
-from scrabble.models import BagTiles
+from scrabble.models import Tilebag
 
 
 class LetterNotFound(Exception):
@@ -14,10 +14,10 @@ class Player:
     def increase_score(self, amount):
         self.score += amount
 
-    def draw_tiles(self, bag: BagTiles, amount):
+    def draw_tiles(self, bag: Tilebag, amount):
         self.tiles.extend(bag.take(amount))
 
-    def exchange_tile(self, tile, bag: BagTiles):
+    def exchange_tile(self, tile, bag: Tilebag):
         for i in range(len(self.tiles)):
             if self.tiles[i] == tile:
                 popped = self.tiles.pop(i)

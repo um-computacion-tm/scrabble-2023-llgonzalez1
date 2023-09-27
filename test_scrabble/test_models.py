@@ -24,7 +24,7 @@ class TestBagTiles(unittest.TestCase):
         self.assertEqual(
             patch_shuffle.call_count,
             1,
-        )
+        )   
         self.assertEqual(
             patch_shuffle.call_args[0][0],
             bag.tiles,

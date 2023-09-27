@@ -51,8 +51,8 @@ class DrawingMoreThanAvaliable(Exception):
 class Tilebag:
     def __init__(self):
         self.tiles = []
-        for letter in letter:
-            tile = Tile(letter, letter[0])
+        for letter in LETTERS:
+            tile = Tile(LETTERS, letter[0])
             for _ in range(letter[1]):
                 self.tiles.append(tile)
         random.shuffle(self.tiles)
