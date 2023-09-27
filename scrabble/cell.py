@@ -18,16 +18,3 @@ class Cell:
         else:
             return self.letter.value
 
-class calculate_word_value:
-    def __init__(self,word):
-        self.word = word
-        
-    def calculate_word(self):
-        values = 0
-        for cell in self.word:
-            values += cell.calculate_value()
-        for cell in self.word:
-            if cell.multiplier_type == 'W' and cell.active == True:
-                values = values * cell.multiplier
-
-        return values

@@ -1,7 +1,7 @@
 from scrabble.cell import Cell
-from scrabble.models import Tile
-
-class calculate_word_value:
+class calulate_word_value:
+    
+   class calculate_word_value:
     def __init__(self,word):
         self.word = word
         

@@ -13,7 +13,7 @@ class TestTiles(unittest.TestCase):
         self.assertEqual(tiles.value, 1)
 
 
-class TestBagTiles(unittest.TestCase):
+class TestTilebag(unittest.TestCase):
     @patch('random.shuffle')
     def test_bag_tiles(self, patch_shuffle):
         bag = Tilebag()
