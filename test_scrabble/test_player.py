@@ -1,6 +1,6 @@
 import unittest
 from scrabble.players import Player, LetterNotFound
-from scrabble.models import BagTiles
+from scrabble.models import Tilebag
 from scrabble.cell import Tile
 
 
@@ -23,24 +23,25 @@ class TestPlayer(unittest.TestCase):
 
     def test_player_draw(self):
         player = Player()
-        bag = BagTiles()
+        bag = Tilebag()
         player.draw_tiles(bag, 2)
         self.assertEqual(len(player.tiles), 2)
 
     def test_player_exchange(self):
         player = Player()
-        bag = BagTiles()
+        bag = tile()
         player.draw_tiles(bag, 2)
         tile = player.tiles[0]
         player.exchange_tile(player.tiles[0], bag)
         self.assertFalse(tile == player.tiles[0])
 
     def test_find_letter_in_tiles(self):
+
         player = Player()
         player.tiles = [Tile('A', 1), Tile('B', 3), Tile('C', 1)]
         result = player.find_letter_in_tiles('B')
-        self.assertIsInstance(result, Tile)
-        self.assertEqual(result.get_letter(), 'B')
+        self.assertIsInstance(result.get_letter, Tile)
+        self.assertEqual(Tile.get_letter, 'B')
         result = player.find_letter_in_tiles('X')
         self.assertFalse(result)
 
