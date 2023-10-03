@@ -1,6 +1,7 @@
 import unittest
 from scrabble.cell import Cell
-from scrabble.models import Tile
+from scrabble.Tile import tile
+
 
 class TestCell(unittest.TestCase):
     def test_init(self):
@@ -22,7 +23,7 @@ class TestCell(unittest.TestCase):
 
     def test_add_letter(self):
         cell = Cell(multiplier=1, multiplier_type='', letter=None, active=True)
-        letter = Tile(letter='p', value=3)
+        letter = tile(letter='p', value=3)
 
         cell.add_letter(letter=letter)
 
@@ -30,23 +31,23 @@ class TestCell(unittest.TestCase):
 
     def test_cell_value(self):
         cell = Cell(multiplier=2, multiplier_type='L', letter=None, active=True)
-        letter = Tile(letter='p', value=3)
+        letter = tile(letter='p', value=3)
         cell.add_letter(letter=letter)
 
         self.assertEqual(
-            cell.calculate_value(),
+            Cell.calculate_value(),
             6,
         )
 
     def test_cell_multiplier_word(self):
         cell = Cell(multiplier=2, multiplier_type='W', letter=None, active=True)
-        letter = Tile(letter='p', value=3)
+        letter = tile(letter='p', value=3)
         cell.add_letter(letter=letter)
 
         self.assertEqual(
             cell.calculate_value(),
             3,
         )
+
 if __name__ == '__main__':
     unittest.main()
-    

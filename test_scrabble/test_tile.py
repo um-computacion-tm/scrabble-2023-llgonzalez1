@@ -1,30 +1,30 @@
 import unittest
-from scrabble.models import (
-    Tilebag,
-    Tile,
+from scrabble.Tile import (
+    tile,
+    BagTiles,
 )
 from unittest.mock import patch
 
 
 class TestTiles(unittest.TestCase):
     def test_tile(self):
-        tiles = Tile('A', 1) 
+        tiles = tile('A', 1)
         self.assertEqual(tiles.letter, 'A')
         self.assertEqual(tiles.value, 1)
 
 
-class TestTilebag(unittest.TestCase):
+class TestBagTiles(unittest.TestCase):
     @patch('random.shuffle')
     def test_bag_tiles(self, patch_shuffle):
-        bag = Tilebag()
+        bag = BagTiles()
         self.assertEqual(
             len(bag.tiles),
-            86,
+            100,
         )
         self.assertEqual(
             patch_shuffle.call_count,
             1,
-        )   
+        )
         self.assertEqual(
             patch_shuffle.call_args[0][0],
             bag.tiles,
@@ -32,11 +32,11 @@ class TestTilebag(unittest.TestCase):
 
 
     def test_take(self):
-        bag = Tilebag()
+        bag = BagTiles()
         tiles = bag.take(2)
         self.assertEqual(
             len(bag.tiles),
-            84,
+            98,
         )
         self.assertEqual(
             len(tiles),
@@ -44,13 +44,14 @@ class TestTilebag(unittest.TestCase):
         )
 
     def test_put(self):
-        bag = Tilebag()
-        put_tiles = [Tile('Z', 1), Tile('Y', 1)]
+        bag = BagTiles()
+        put_tiles = [tile('Z', 1), tile('Y', 1)]
         bag.put(put_tiles)
         self.assertEqual(
             len(bag.tiles),
-            88,
+            102,
         )
+
 
 
 if __name__ == '__main__':

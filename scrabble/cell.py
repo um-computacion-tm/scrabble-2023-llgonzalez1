@@ -1,4 +1,4 @@
-from scrabble.models import Tile
+from Tile import tile
 
 class Cell:
     def __init__(self, multiplier, multiplier_type, letter, active):
@@ -6,8 +6,14 @@ class Cell:
         self.multiplier_type = multiplier_type
         self.letter = letter
         self.active = active
+    
+    def __repr__(self):
+        if self.multiplier == 1:
+            return f"[  ]"
+        else:
+            return f"[{self.multiplier} ]"
 
-    def add_letter(self, letter:Tile):
+    def add_letter(self, letter:tile):
         self.letter = letter
 
     def calculate_value(self):
@@ -17,10 +23,8 @@ class Cell:
             return self.letter.value * self.multiplier
         else:
             return self.letter.value
-
-class calulate_word_value:
-    
-   class calculate_word_value:
+        
+class calculate_word_value:
     def __init__(self,word):
         self.word = word
         
