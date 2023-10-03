@@ -1,4 +1,4 @@
-from Tile import tile
+from scrabble.Tile import tile
 
 class Cell:
     def __init__(self, multiplier, multiplier_type, letter, active):
@@ -25,15 +25,16 @@ class Cell:
             return self.letter.value
         
 class calculate_word_value:
-    def __init__(self,word):
+    def __init__(self, word):
         self.word = word
-        
-    def calculate_word(self):
-        values = 0
-        for cell in self.word:
-            values += Cell.calculate_value()
-        for cell in self.word:
-            if Cell.multiplier_type == 'W' and Cell.active == True:
-                values = values * Cell.multiplier
 
-        return values
+    def calculate_word(self):
+        self.values = 0
+        for cell in self.word:
+            values += cell.calculate_value()  # Llama al método en la instancia 'cell'
+        
+        for cell in self.word:
+            if cell.multiplier_type == 'W' and cell.active == True:  # Accede a los atributos de la instancia 'cell'
+                self.values = values * cell.multiplier  # Accede al atributo de la instancia 'cell'
+
+        return self.values

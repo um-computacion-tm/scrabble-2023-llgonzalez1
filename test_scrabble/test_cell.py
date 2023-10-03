@@ -29,15 +29,17 @@ class TestCell(unittest.TestCase):
 
         self.assertEqual(cell.letter, letter)
 
+    
     def test_cell_value(self):
         cell = Cell(multiplier=2, multiplier_type='L', letter=None, active=True)
         letter = tile(letter='p', value=3)
         cell.add_letter(letter=letter)
 
         self.assertEqual(
-            Cell.calculate_value(),
-            6,
+            cell.calculate_value(),  # Llama al método en la instancia 'cell'
+        6,  # El valor esperado es 6
         )
+
 
     def test_cell_multiplier_word(self):
         cell = Cell(multiplier=2, multiplier_type='W', letter=None, active=True)
