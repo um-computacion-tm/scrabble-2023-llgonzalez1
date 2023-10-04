@@ -29,12 +29,12 @@ class calculate_word_value:
         self.word = word
 
     def calculate_word(self):
-        self.values = 0
+        values = 0
         for cell in self.word:
             values += cell.calculate_value()  # Llama al método en la instancia 'cell'
         
         for cell in self.word:
             if cell.multiplier_type == 'W' and cell.active == True:  # Accede a los atributos de la instancia 'cell'
-                self.values = values * cell.multiplier  # Accede al atributo de la instancia 'cell'
+                values = values * cell.multiplier  # Accede al atributo de la instancia 'cell'
 
-        return self.values
+        return values
