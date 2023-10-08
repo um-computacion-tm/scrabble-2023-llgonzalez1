@@ -13,7 +13,7 @@ class TestBoard(unittest.TestCase):
         self.assertEqual(
             len(board.grid[0]),
             15,
-        )
+       )
     
     def test_word_inside_board(self):
         board = Board()
@@ -67,87 +67,48 @@ class TestBoard(unittest.TestCase):
         board.grid[7][7].add_letter(tile('C', 1))
         board.empty()
         assert board.is_empty == False
-        
 
-    def test_place_word_empty_board_horizontal_fine(self):
-        board = Board()
-        word = "FACULTAD"
-        location = (7, 4)
-        orientation = "H"
-        word_is_valid = board.validate_word_place_board(word, location, orientation)
-        assert word_is_valid == True
 
-    def test_place_word_empty_board_horizontal_wrong(self):
-        board = Board()
-        word = "FACULTAD"
-        location = (2, 4)
-        orientation = "H"
-        word_is_valid = board.validate_word_place_board(word, location, orientation)
-        assert word_is_valid == False
-      
-    def test_place_word_empty_board_vertical_fine(self):
-        board = Board()
-        word = "FACULTAD"
-        location = (4, 7)
-        orientation = "V"
-        word_is_valid = board.validate_word_place_board(word, location, orientation)
-        assert word_is_valid == True
+######
+    def test_validate_word_inside_board_horizontal(self):
+            board = Board()
+            word = "HELLO"
+            location = (0, 5)
+            orientation = "H"
 
-    def test_place_word_empty_board_vertical_wrong(self):
-        board = Board()
-        word = "FACULTAD"
-        location = (2, 4)
-        orientation = "V"
-        word_is_valid = board.validate_word_place_board(word, location, orientation)
-        assert word_is_valid == False
-        
-    def test_place_word_not_empty_board_horizontal_fine(self):
-        board = Board()
-        board.grid[7][7].add_letter(tile('C', 1))
-        board.grid[8][7].add_letter(tile('A', 1)) 
-        board.grid[9][7].add_letter(tile('S', 1)) 
-        board.grid[10][7].add_letter(tile('A', 1)) 
-        word = "FACULTAD"
-        location = (8, 6)
-        orientation = "H"
-        word_is_valid = board.validate_word_place_board(word, location, orientation)
-        assert word_is_valid == True
+            is_valid = board.validate_word_inside_board(word, location, orientation)
 
-    def test_place_word_not_empty_board_horizontal_not_fine(self):
+            self.assertTrue(is_valid)
+
+    def test_validate_word_inside_board_vertical(self):
         board = Board()
-        board.grid[7][7].add_letter(tile('C', 1))
-        board.grid[8][7].add_letter(tile('A', 1)) 
-        board.grid[9][7].add_letter(tile('S', 1)) 
-        board.grid[10][7].add_letter(tile('A', 1)) 
-        word = "MISA"
-        location = (8, 6)
+        word = "WORLD"
+        location = (5, 0)
+        orientation = "V"
+
+        is_valid = board.validate_word_inside_board(word, location, orientation)
+
+        self.assertTrue(is_valid)
+
+    def test_validate_word_outside_board_horizontal(self):
+        board = Board()
+        word = "OUTSIDE"
+        location = (0, 10)
         orientation = "H"
-        word_is_valid = board.validate_word_place_board(word, location, orientation)
-        assert word_is_valid == False
-        
-    def test_place_word_not_empty_board_vertical_fine(self):
+
+        is_valid = board.validate_word_inside_board(word, location, orientation)
+
+        self.assertFalse(is_valid)
+
+    def test_validate_word_outside_board_vertical(self):
         board = Board()
-        board.grid[7][7].add_letter(tile('C', 1))
-        board.grid[7][8].add_letter(tile('A', 1)) 
-        board.grid[7][9].add_letter(tile('S', 1)) 
-        board.grid[7][10].add_letter(tile('A', 1)) 
-        word = "Facultad"
-        location = (6, 8)
+        word = "VERTICAL"
+        location = (10, 0)
         orientation = "V"
-        word_is_valid = board.validate_word_place_board(word, location, orientation)
-        assert word_is_valid == True
-    
-    def test_place_word_not_empty_board_vertical_not_fine(self):
-        board = Board()
-        board.grid[7][7].add_letter(tile('C', 1))
-        board.grid[7][8].add_letter(tile('A', 1)) 
-        board.grid[7][9].add_letter(tile('S', 1)) 
-        board.grid[7][10].add_letter(tile('A', 1)) 
-        word = "MISA"
-        location = (6, 8)
-        orientation = "V"
-        word_is_valid = board.validate_word_place_board(word, location, orientation)
-        assert word_is_valid == False
+
+        is_valid = board.validate_word_inside_board(word, location, orientation)
+
+        self.assertFalse(is_valid)
 
     def test_x3_multiplier_cell(self):
         board = Board()

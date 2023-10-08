@@ -10,29 +10,29 @@ class Board:
         self.is_empty = None
         
     def print_board(self):
-        print('  ', end='')  
+        print('  ', end='')
         for col_num in range(15):
             print(f'{col_num:4}', end=' ')
-        print()  
-
+        print()
+    
         for row_num, row in enumerate(self.grid):
-            print(f'{row_num:2} ', end='')   
-            for cell in row:
-                print(cell, end=' ')
-            print()    
+            print(f'{row_num:2} ', end='')
+            print(' '.join(map(str, row)))  
+            print()
+   
 
     
     def validate_word_inside_board(self, word, location, orientation):
-        self.word = word.upper()
-        self.orientation = orientation
-        self.position_row = location[0]
-        self.position_col = location[1] 
-        if orientation == 'H' and len(self.word)<=15-self.position_col:
-            return True
-        elif orientation == 'V' and len(self.word)<=15-self.position_row:
-            return True
+        word = word.upper()
+        row, col = location
+
+        if orientation == 'H':
+            return len(word) <= 15 - col
+        elif orientation == 'V':
+            return len(word) <= 15 - row
         else:
             return False
+
         
         
     def empty(self):
@@ -45,38 +45,32 @@ class Board:
         self.word = word.upper()
         valid = self.validate_word_inside_board(word, location, orientation)
         self.empty()
-        if self.is_empty == False:
-            if valid == True:
-                if orientation == "H":
-                    for i in self.word:
-                        index = self.position_col
-                        if self.grid[self.position_row][index].letter is not None:
-                            if i != self.grid[self.position_row][index].letter.letter:
-                                return False
-                        self.position_col += 1
-                    return True
-                else:
-                    for i in self.word:
-                        index = self.position_row
-                        if self.grid[index][self.position_col].letter is not None:
-                            if i != self.grid[index][self.position_col].letter.letter:    
-                                return False
-                        self.position_row += 1
-                    return True
-        else:
-            if valid == True:
+        self.missing_letters = self.word
+        if valid==True:
+            if self.is_empty==True:
                 for i in self.word:
+                    if (self.position_row == 7 and self.position_col == 7) or \
+                    (self.position_col == 7 and self.position_row == 7):
+                        return True
                     if orientation == "H":
-                        index = self.position_col
-                        if self.position_row == 7 and index == 7:
-                            return True
-                        self.position_col += 1 
-                    else:
-                        index = self.position_row
-                        if self.position_col == 7 and index == 7:
-                            return True
-                        self.position_row += 1 
+                        self.position_col += 1
+                    elif orientation == "V":
+                        self.position_row += 1
                 return False
+            else:
+                for i in self.word:
+                    cell = self.grid[self.position_row][self.position_col]
+                    if cell.letter is not None and i != cell.letter.letter:
+                        return False
+                    if cell.letter is not None and cell.letter.letter == i:
+                       self.missing_letters = self.missing_letters.replace(i, "") 
+                    if orientation == "H":
+                        self.position_col += 1
+                    elif orientation == "V":
+                        self.position_row += 1
+                return True
+        return False
+
     
     def add_multiplier(self):
         x3_word = [
