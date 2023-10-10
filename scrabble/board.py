@@ -19,9 +19,7 @@ class Board:
             print(f'{row_num:2} ', end='')
             print(' '.join(map(str, row)))  
             print()
-   
 
-    
     def validate_word_inside_board(self, word, location, orientation):
         word = word.upper()
         row, col = location
@@ -32,9 +30,7 @@ class Board:
             return len(word) <= 15 - row
         else:
             return False
-
-        
-        
+           
     def empty(self):
         if self.grid[7][7].letter == None:
             self.is_empty = True
