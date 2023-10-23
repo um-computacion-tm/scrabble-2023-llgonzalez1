@@ -22,4 +22,3 @@ jobs:
           name: Update CodeClimate coverage report
           command: |
               ./cc-test-reporter after-build
-              
