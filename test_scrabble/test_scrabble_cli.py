@@ -228,7 +228,7 @@ class TestCli(unittest.TestCase):
         with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
             scrabble_cli.show_results()
 
-            expected_output = "The Game has ended\n[('Tomas', 200), ('Marcos', 100)]\nThe winner is: Tomas\n"
+            expected_output = "The Game has ended\n[('julia', 200), ('pepe', 100)]\nThe winner is: julia\n"
             self.assertEqual(mock_stdout.getvalue(), expected_output)
     
             
